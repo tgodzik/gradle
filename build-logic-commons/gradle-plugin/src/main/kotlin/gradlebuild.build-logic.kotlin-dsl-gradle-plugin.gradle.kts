@@ -25,7 +25,7 @@ plugins {
     id("java-library")
     id("org.gradle.kotlin.kotlin-dsl") // this is 'kotlin-dsl' without version
     id("gradlebuild.code-quality")
-    id("org.gradle.kotlin-dsl.ktlint-convention")
+    id("gradlebuild.ktlint")
 }
 
 java {
@@ -57,7 +57,7 @@ tasks.codeQuality {
 
 tasks.validatePlugins {
     failOnWarning.set(true)
-    enableStricterValidation.set(false)
+    enableStricterValidation.set(true)
 }
 
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 the original author or authors.
+ * Copyright 2021 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,10 +14,13 @@
  * limitations under the License.
  */
 
-package gradlebuild.testing
+package org.gradle.architecture.test;
 
+import com.tngtech.archunit.lang.ArchRule;
+import com.tngtech.archunit.library.freeze.FreezingArchRule;
 
-enum class TestType(val prefix: String, val executers: List<String>) {
-    INTEGRATION("integ", listOf("embedded", "forking", "noDaemon", "parallel", "configCache")),
-    CROSSVERSION("crossVersion", listOf("embedded", "forking"))
+public interface ArchUnitFixture {
+    static ArchRule freeze(ArchRule rule) {
+        return new FreezeInstructionsPrintingArchRule(FreezingArchRule.freeze(rule));
+    }
 }
